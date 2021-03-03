@@ -1,4 +1,6 @@
 # A Kafka Connect image for running connectors in standalone mode
+## Motivation
+i wanted to be able to push and pull data from my on-prem connectors to my [Confluent Cloud](https://confluent.cloud/) account easily/quickly. if there is a better way to do this, lmk!
 ## How to use
 1. update Dockerfile to install the desired connector
 2. docker build -t your-image-name .
