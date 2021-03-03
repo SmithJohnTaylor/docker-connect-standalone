@@ -8,7 +8,7 @@ i wanted to be able to push and pull data from my on-prem connectors to my [Conf
 4. see sample compose file
 
 ## How it works
-It psuedo code, it runs: 
+In psuedo code, it runs: 
 connect-standalone STANDALONE_.properties CONNECT_.properties 
 
 ## Gotchas
