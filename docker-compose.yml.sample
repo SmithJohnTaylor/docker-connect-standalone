@@ -1,0 +1,40 @@
+version: '2'
+services:
+  kafka-connect-standalone:
+    image: <your standalone container name you built>:latest
+    deploy:
+      replicas: 1
+    environment:
+      - STANDALONE_BOOTSTRAP_SERVERS=XXXXXXXXXXX:9092
+      - STANDALONE_KEY_CONVERTER=io.confluent.connect.avro.AvroConverter
+      - STANDALONE_VALUE_CONVERTER=io.confluent.connect.avro.AvroConverter
+      - STANDALONE_OFFSET_STORAGE_FILE_FILENAME=/tmp/connect.offsets
+      - STANDALONE_OFFSET_FLUSH_INTERVAL_MS=10000
+      - STANDALONE_SSL.ENDPOINT.IDENTIFICATION.ALGORITHM=https
+      - STANDALONE_SECURITY_PROTOCOL=SASL_SSL
+      - STANDALONE_SASL_JAAS_CONFIG=org.apache.kafka.common.security.plain.PlainLoginModule required username="XXXXXXXXXXX" password="XXXXXXXXXXX";
+      - STANDALONE_SASL_MECHANISM=PLAIN
+      - STANDALONE_PRODUCER_SECURITY_PROTOCOL=SASL_SSL
+      - STANDALONE_PRODUCER_SASL_JAAS_CONFIG=org.apache.kafka.common.security.plain.PlainLoginModule required username="XXXXXXXXXXX" password="XXXXXXXXXXX";
+      - STANDALONE_PRODUCER_SASL_MECHANISM=PLAIN
+      - STANDALONE_CONSUMER_SECURITY_PROTOCOL=SASL_SSL
+      - STANDALONE_CONSUMER_SASL_JAAS_CONFIG=org.apache.kafka.common.security.plain.PlainLoginModule required username="XXXXXXXXXXX" password="XXXXXXXXXXX";
+      - STANDALONE_CONSUMER_SASL_MECHANISM=PLAIN
+      - STANDALONE_VALUE_CONVERTER_SCHEMAS_ENABLE="true"
+      - STANDALONE_VALUE_CONVERTER_SCHEMA_REGISTRY_URL=
+      - STANDALONE_VALUE_CONVERTER_BASIC_AUTH_CREDENTIALS_SOURCE=USER_INFO
+      - STANDALONE_VALUE_CONVERTER_SCHEMA_REGISTRY_BASIC_AUTH_USER_INFO=XXXXXXXXXXX:XXXXXXXXXXX
+      - STANDALONE_KEY_CONVERTER_SCHEMA_REGISTRY_URL=https://XXXXXXXXXXX
+      - STANDALONE_KEY_CONVERTER_BASIC_AUTH_CREDENTIALS_SOURCE=USER_INFO
+      - STANDALONE_KEY_CONVERTER_SCHEMA_REGISTRY_BASIC_AUTH_USER_INFO=XXXXXXXXXXX:XXXXXXXXXXX
+      - STANDALONE_KEY_CONVERTER_SCHEMAS_ENABLE="true"
+      - STANDALONE_PLUGIN.PATH=/usr/share/confluent-hub-components/confluentinc-kafka-connect-elasticsearch/
+      - CONNECT_NAME=elasticsearch-sink-connector
+      - CONNECT_CONNECTOR_CLASS=io.confluent.connect.elasticsearch.ElasticsearchSinkConnector
+      - CONNECT_TYPE_NAME=_doc
+      - CONNECT_TOPICS=test01
+      - CONNECT_KEY_IGNORE=true
+      - CONNECT_SCHEMA_IGNORE=false
+      - CONNECT_CONNECTION_URL=http://elasticsearch:9200
+    ports:
+      - 8083:8083
