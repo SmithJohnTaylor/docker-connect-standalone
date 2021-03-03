@@ -7,6 +7,10 @@ i wanted to be able to push and pull data from my on-prem connectors to my [Conf
 3. in your docker-compose.yml, the `STANDALONE_` properties are for the WORKER, and the `CONNECT_` properties are for the CONNECTOR properties
 4. see sample compose file
 
+## How it works
+It psuedo code, it runs: 
+connect-standalone STANDALONE_.properties CONNECT_.properties 
+
 ## Gotchas
 1. case sensitive properties
 
