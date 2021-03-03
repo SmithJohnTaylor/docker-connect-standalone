@@ -9,5 +9,5 @@
 1. case sensitive properties
 
 ## Credits
-https://github.com/confluentinc/kafka-images/tree/master/kafka-connect-base
-https://github.com/zeelos/kafka-connect-standalone
+* https://github.com/confluentinc/kafka-images/tree/master/kafka-connect-base
+* https://github.com/zeelos/kafka-connect-standalone
