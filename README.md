@@ -1,4 +1,4 @@
-# A Kafka Connect image for running connectors in standalone more
+# A Kafka Connect image for running connectors in standalone mode
 ## How to use
 1. update Dockerfile to install the desired connector
 2. docker build -t your-image-name .
